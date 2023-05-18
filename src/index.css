@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* * {
+    outline: red dashed;
+} */
+
+.login-bg::before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0.2;
+        background-repeat: no-repeat;
+        background-position: 0 10%;
+        background-size: cover;
+		background-image: url('./assets/images/login-image.png');
+    }

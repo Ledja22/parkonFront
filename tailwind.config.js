@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-/** @type {import('tailwindcss/colors').Config} */
+import colors from 'tailwind-colors';
 
 export default {
-    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-    theme: {
+  content: ["./src/**/*.{html,js,tsx,jsx}"],
+  theme: {
         screens: {
             xs: '320px',
             mm: '375px',
@@ -931,6 +931,6 @@ export default {
         width: ['responsive'],
         wordBreak: ['responsive'],
         zIndex: ['responsive', 'focus-within', 'focus'],
-    },
-    plugins: [],
+  },
+  plugins: [],
 };
