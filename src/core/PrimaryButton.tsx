@@ -22,7 +22,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 				<Link
 					className={`${
 						props.sm ? 'text-sm' : 'text-xs'
-					} flex items-center font-medium bg-indigo-400 text-white rounded-md py-2 px-4 h-9`}
+					} flex items-center font-medium bg-green-400 text-white rounded-md py-2 px-4 h-9`}
 					to={props.to}>
 					{props.label}
 				</Link>
@@ -30,7 +30,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 				<button
 					className={`${
 						props.sm ? 'text-sm' : 'text-xs'
-					} flex items-center justify-center font-medium transition ease-in-out duration-400 bg-indigo-600 hover:bg-primary-700 
+					} flex items-center justify-center font-medium transition ease-in-out duration-400 bg-green-600 hover:bg-green-700 
           text-white rounded-md py-2 px-4 flex-1 h-9 disabled:bg-gray-400 disabled:cursor-not-allowed`}
 					onClick={props.onClick}
 					disabled={props.disabled || props.isLoading}>

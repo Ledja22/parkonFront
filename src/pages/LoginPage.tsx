@@ -1,9 +1,7 @@
 /** @format */
 
 import {
-	FormEvent,
 	FormEventHandler,
-	MouseEventHandler,
 	useState,
 } from 'react';
 import Input from '../core/Input';
@@ -13,6 +11,7 @@ import API from '../utils/API';
 import { useDispatch } from 'react-redux';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../redux/authSlice';
 
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
@@ -30,6 +29,7 @@ const LoginPage = () => {
 		})
 			.then((res) => {
 				console.log(res.data.accessToken);
+				dispatch(login(res.data.data))
 			})
 			.catch((error) => {
 				console.error(error);
@@ -77,9 +77,7 @@ const LoginPage = () => {
 								onClick={() => navigate('/register')}>
 								Register here!
 							</p>
-							<a className="text-right my-3">
-								Forgot password?
-							</a>
+							<a className="text-right my-3">Forgot password?</a>
 						</div>
 					</div>
 				</form>
