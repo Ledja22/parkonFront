@@ -6,6 +6,10 @@
     outline: red dashed;
 } */
 
+.leaflet-container {
+  height: 100%;
+}
+
 .login-bg::before {
         content: ' ';
         display: block;

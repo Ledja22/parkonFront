@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import API from '../utils/API';
+import { SearchInput } from '../core/SearchInput';
 
 const ProfilePage = () => {
 	//const [userActivity, setUserActivity] = useState([]);
@@ -77,8 +78,13 @@ const ProfilePage = () => {
 
 	return (
 		<div>
-			<h2>Welcome back, {userActivity[0].user.username}</h2>
-            <h4>Check out your activity so far!</h4>
+			<div className="w-full font-montserrat flex justify-between items-center h-40 bg-green-100">
+				<div className="flex space-y-4 flex-col">
+					<h2>Welcome back, {userActivity[0].user.username}</h2>
+					<h4>Check out your activity so far!</h4>
+				</div>
+				<div></div>
+			</div>
 			<div>
 				{userActivity.map((activity) => (
 					<div className="flex flex-row border space-x-4 bg-gray-100 space-y-2">

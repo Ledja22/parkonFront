@@ -10,10 +10,10 @@ type LayoutProps = {
 
 const Layout = (props: LayoutProps): JSX.Element => {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="grid grid-cols-1 max-h-screen h-screen relative " style={{gridTemplateRows: '60px calc(100vh - (60px + 61px)) 61px'}}>
 			<Header />
-			<div>{props.children}</div>;
-			<Footer className="mt-auto" />
+			<div className='overflow-auto'>{props.children}</div>
+			<Footer />
 		</div>
 	);
 };

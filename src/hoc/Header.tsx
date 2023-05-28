@@ -11,7 +11,7 @@ const Header = () => {
 	};
 	return (
 		<div>
-			<nav className="flex flex-row justify-between items-center  bg-green-500 p-3">
+			<nav className="flex flex-row justify-between items-center bg-green-500 p-3">
 				<div className="flex">
 					<EyeIcon className="w-6 h-6" />
 				</div>
@@ -22,7 +22,7 @@ const Header = () => {
 						<div>Areas</div>
 						<div>Why us</div>
 					</div>
-					<PrimaryButton to="/signin" label="SIGN IN" />
+					<PrimaryButton to="/signin" label="SIGN OUT" />
 				</div>
 			</nav>
 		</div>
