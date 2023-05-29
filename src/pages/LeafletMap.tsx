@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import { LatLngBoundsExpression, LatLngExpression } from "leaflet";
 
 export default function LeafletMap() {
-  const position: LatLngExpression = [41.153332, 20.168331]
+  const position: LatLngExpression = [41.3275, 19.8187]
 
   return (
     <MapContainer center={position} zoom={13} scrollWheelZoom={false}>

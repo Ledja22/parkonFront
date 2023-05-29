@@ -25,9 +25,9 @@ const LoginPage = () => {
 			password,
 		})
 			.then((res) => {
-				navigate('/home');
 				console.log(res.data.accessToken);
-				dispatch(login(res.data.data.accessToken));
+				dispatch(login(res.data.accessToken));
+				navigate('/home');
 			})
 			.catch((error) => {
 				console.error(error);

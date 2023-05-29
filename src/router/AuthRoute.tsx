@@ -1,20 +1,12 @@
 import React from 'react';
+import { Route, Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import _ from 'lodash';
-import { Navigate, Outlet } from 'react-router';
+import { RootState } from '../redux/store';
 
-const AuthRoute = () => {
-  const accessToken = useSelector((state) =>
-    _.get(state, 'accessToken', null)
-  );
+const AuthRoute: React.FC = () => {
+  const isAuth = useSelector((state: RootState) => state.authSlice.isLogedin);
 
-  if (!accessToken) {
-    return <Navigate to="/signin" />;
-  }
-
-  return <Outlet />;
+  return isAuth ? <Outlet /> : <Navigate to="/signin" />;
 };
 
 export default AuthRoute;
-
-
