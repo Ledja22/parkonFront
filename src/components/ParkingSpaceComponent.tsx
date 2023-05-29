@@ -12,7 +12,7 @@ const ParkingSpaceComponent = () => {
 	const [viewParkingSpace, setViewParkingSpace] = useState(false);
 	return (
 		<>
-			<div className="cursor-pointer">
+			<div className="cursor-pointer mx-2">
 				<div className="flex  flex-col border-1 border-green-500 rounded-lg m-3">
 					<div className="flex items-center justify-center bg-green-500 rounded-md text-white p-3">
 						<div className="flex justify-between">
@@ -28,7 +28,6 @@ const ParkingSpaceComponent = () => {
 					</div>
 				</div>
 			</div>
-			{/* {viewParkingSpace && <ViewParkingSpaceDrawer />} */}
 		</>
 	);
 };

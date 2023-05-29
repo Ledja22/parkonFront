@@ -5,14 +5,16 @@ import { Navigate, Outlet } from 'react-router';
 
 const AuthRoute = () => {
   const accessToken = useSelector((state) =>
-    _.get(state, 'authenticationReducer.access_token', null)
+    _.get(state, 'accessToken', null)
   );
 
   if (!accessToken) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/signin" />;
   }
 
   return <Outlet />;
 };
 
 export default AuthRoute;
+
+

@@ -12,7 +12,7 @@ const DetailItem = (props: any) => {
 	);
 };
 
-const ViewParkingSpaceDrawer = () => {
+const ViewParkingSpaceDrawer = (props: any) => {
 	return (
 		<div>
              <div className="flex justify-between rounded-lg bg-green-500 mt-2 px-5 mx-1">

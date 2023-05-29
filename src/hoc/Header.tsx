@@ -1,10 +1,14 @@
 /** @format */
 
-import { EyeIcon } from '@heroicons/react/outline';
 import PrimaryButton from '../core/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/authSlice';
+import ParkonLogo from '../assets/images/parkon-logo.png';
+
 const Header = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const goTo = () => {
 		navigate('/signin');
@@ -13,16 +17,18 @@ const Header = () => {
 		<div>
 			<nav className="flex flex-row justify-between items-center bg-green-500 p-3">
 				<div className="flex">
-					<EyeIcon className="w-6 h-6" />
+					<img src={ParkonLogo} className="w-14 h-12" />
 				</div>
-				<div className="flex items-center space-x-4">
+				<div className="flex items-center cursor-pointer space-x-4">
 					<div className="flex space-x-8 text-white text-sm">
-						<div>News</div>
-						<div>Blog</div>
-						<div>Areas</div>
-						<div>Why us</div>
+						<div onClick={() => navigate('/home')}>Home</div>
+						<div onClick={() => navigate('/profile')}>Profile</div>
 					</div>
-					<PrimaryButton to="/signin" label="SIGN OUT" />
+					<PrimaryButton
+						to="/signin"
+						label="SIGN OUT"
+						onClick={() => dispatch(logout())}
+					/>
 				</div>
 			</nav>
 		</div>

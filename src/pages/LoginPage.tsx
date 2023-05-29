@@ -1,9 +1,6 @@
 /** @format */
 
-import {
-	FormEventHandler,
-	useState,
-} from 'react';
+import { FormEventHandler, useState } from 'react';
 import Input from '../core/Input';
 import PrimaryButton from '../core/PrimaryButton';
 import PasswordInput from '../core/PasswordInput';
@@ -28,8 +25,9 @@ const LoginPage = () => {
 			password,
 		})
 			.then((res) => {
+				navigate('/home');
 				console.log(res.data.accessToken);
-				dispatch(login(res.data.data))
+				dispatch(login(res.data.data.accessToken));
 			})
 			.catch((error) => {
 				console.error(error);
