@@ -1,18 +1,30 @@
 /** @format */
 
-import { useCallback, useEffect, useState } from 'react';
+import { SetStateAction, useCallback, useEffect, useState } from 'react';
 import ParkingSpaceComponent from '../components/ParkingSpaceComponent';
 import ViewParkingSpaceDrawer from '../components/ViewParkingSpaceDrawer';
 import API from '../utils/API';
 
+type ParkingSpace = {
+	address: string;
+	capacity: string;
+	closesAt: string;
+	id: string;
+	name: string;
+	opensAt: string;
+	telephone: string;
+};
+
 const ParkingSpaceContainer = () => {
-	const [parkingSpaces, setParkingSpaces] = useState([]);
-	const [selectedParkingSpace, setSelectedParkingSpace] = useState();
+	const [parkingSpaces, setParkingSpaces] = useState<Array<ParkingSpace>>([]);
+	const [selectedParkingSpace, setSelectedParkingSpace] = useState({});
 
 	const getParkingSpaces = useCallback(() => {
 		API.get('/parking-spaces')
 			.then((res) => {
-				console.log(res);
+				const allParkingSpaces = res.data;
+				setParkingSpaces(allParkingSpaces);
+				console.log(res.data);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -20,16 +32,30 @@ const ParkingSpaceContainer = () => {
 	useEffect(() => {
 		getParkingSpaces();
 	}, [getParkingSpaces]);
+
+	const isObjectEmpty = (object: {}) => Object.keys(object).length === 0;
+
+	console.log(selectedParkingSpace);
+
+	const handleParkingSpotChange = (parkingSpace: any) => [
+		setSelectedParkingSpace(parkingSpace),
+	];
+
 	return (
 		<div className="flex flex-col bg-gray-200 overflow-scroll">
-			<ParkingSpaceComponent />
-			<ParkingSpaceComponent />
-			<ParkingSpaceComponent />
-			<ParkingSpaceComponent />
-			<ParkingSpaceComponent />
-
-			{selectedParkingSpace && (
-				<ViewParkingSpaceDrawer parkingSpace={selectedParkingSpace} />
+			{isObjectEmpty(selectedParkingSpace) && parkingSpaces?.map((parkingSpace) => (
+				<div key={parkingSpace.id}>
+					<ParkingSpaceComponent
+						parkingSpace={parkingSpace}
+						onSelect={handleParkingSpotChange}
+					/>
+				</div>
+			))}
+			{!isObjectEmpty(selectedParkingSpace) && (
+				<ViewParkingSpaceDrawer
+					selectedParkingSpace={selectedParkingSpace}
+					deSelectParkingSpace={() => setSelectedParkingSpace({})}
+				/>
 			)}
 		</div>
 	);

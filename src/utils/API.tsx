@@ -12,7 +12,7 @@ const API = Axios.create({
 
 API.interceptors.request.use(function (config) {
   const token = store.getState().authSlice.accessToken
-    config.headers.Authorization = token;
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
 });
 
