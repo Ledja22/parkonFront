@@ -3,22 +3,21 @@
 import React, { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 
-type PrimaryButtonProps = {
-	label?: string | 'Enter';
+type CancelButtonProps = {
+	label?: string;
 	link?: boolean | false;
-	to?: string | '/ ';
+	to: string | '';
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	icon?: null;
 	sm?: boolean | false;
 	disabled?: boolean | false;
-	isLoading?: boolean | false;
 	className?: string;
 };
 
-const PrimaryButton = (props: PrimaryButtonProps) => {
+const CancelButton = (props: CancelButtonProps) => {
 	return (
 		<div className={props.className}>
-			{props.link && props.to ? (
+			{props.link ? (
 				<Link
 					className={`${
 						props.sm ? 'text-sm' : 'text-xs'
@@ -30,19 +29,11 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 				<button
 					className={`${
 						props.sm ? 'text-sm' : 'text-xs'
-					} flex items-center justify-center font-medium transition ease-in-out duration-400 bg-green-600 hover:bg-green-700 
+					} flex items-center justify-center font-medium transition ease-in-out duration-400 bg-red-600 hover:bg-red-700 
           text-white rounded-md py-2 px-4 flex-1 h-9 disabled:bg-gray-400 disabled:cursor-not-allowed`}
 					onClick={props.onClick}
-					disabled={props.disabled || props.isLoading}>
-					{props.isLoading && (
-						<div className="mr-1">
-							<div
-								style={{ borderTopColor: 'transparent' }}
-								className="w-4 h-4 border-2 border-blue-40  0 border-dotted rounded-full animate-spin"
-							/>
-						</div>
-					)}
-					{!props.isLoading && props.icon}
+					disabled={props.disabled}>
+					{props.icon}
 					{props.label}
 				</button>
 			)}
@@ -50,4 +41,4 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 	);
 };
 
-export default PrimaryButton;
+export default CancelButton;

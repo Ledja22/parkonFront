@@ -1,8 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import API from '../utils/API'
 
+type User = {
+  id: string,
+  username: string,
+  role: string,
+  vehicle: []
+}
+
+const userInitialstate = {
+  id: null,
+  username: null,
+  role: null,
+  vehicle: null
+}
+
 const initialState = {
-  contents: [],
+  user: userInitialstate,
   isLoading: false,
   error: null,
 }
@@ -10,9 +24,8 @@ const initialState = {
 export const fetchUser = createAsyncThunk(
   'user/get-user',
   async () => {
-    const res = await API.get('https:/jsonplaceholder.typicode.com/photos')
+    const res = await API.get('/auth/user')
     const data = await res.data
-    console.log(data);
     return data
   }
 )
@@ -27,7 +40,7 @@ export const userSlice = createSlice({
     })
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.isLoading = false
-      state.contents = action.payload
+      state.user = action.payload
     })
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.isLoading = false

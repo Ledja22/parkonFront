@@ -1,20 +1,21 @@
 /** @format */
 
-import React, { SetStateAction } from 'react';
+import React, { ReactNode, SetStateAction } from 'react';
 import PrimaryButton from './PrimaryButton';
+import CancelButton from './CancelButton';
 
 type BlankModalProps = {
 	setOpenModal: React.Dispatch<SetStateAction<boolean>>;
-	children: string | JSX.Element | JSX.Element[];
+	children: ReactNode;
 	title: string;
 	icon?: string;
 	maxW?: string | 'lg';
 	onClose?: () => void;
-	otherButtons?: [];
+	otherButtons?: ReactNode[];
 	bgColor?: string | 'white';
 };
 
-const BlankModal = (props: BlankModalProps) => {
+const BlankModal: React.FC<BlankModalProps> = (props: BlankModalProps) => {
 	const close = () => {
 		if (props.setOpenModal) {
 			props.setOpenModal(false);
@@ -66,11 +67,16 @@ const BlankModal = (props: BlankModalProps) => {
 					</div>
 					<div className="bg-gray-50 px-4 py-3 sm:px-6 flex flex-row-reverse">
 						{props.otherButtons?.map((button, index) => (
-							<div key={button} data-testid={`blank-modal-button-${index}`}>
+							<div key={index} data-testid={`blank-modal-button-${index}`}>
 								{button}{' '}
 							</div>
 						))}
-						<PrimaryButton label="Close" onClick={close} to={''} />
+						<CancelButton
+							label="Close"
+							className="mr-2"
+							onClick={close}
+							to={''}
+						/>
 					</div>
 				</div>
 			</div>

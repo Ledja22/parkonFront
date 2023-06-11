@@ -2,20 +2,22 @@
 
 import PrimaryButton from '../core/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/authSlice';
-import ParkonLogo from '../assets/images/parkon-logo.png';
+import ParkonLogo from '../assets/images/parking2.png';
+import { RootState } from '../redux/store';
 
 const Header = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const user = useSelector((state: RootState) => state.userSlice.user); // get user
 
 	const goTo = () => {
 		navigate('/signin');
 	};
 	return (
 		<div>
-			<nav className="flex flex-row justify-between items-center bg-green-500 p-3">
+			<nav className="flex justify-between items-center align-content-center bg-green-500 p-3">
 				<div className="flex">
 					<img src={ParkonLogo} className="w-14 h-12" />
 				</div>
@@ -23,6 +25,11 @@ const Header = () => {
 					<div className="flex space-x-8 text-white text-sm">
 						<div onClick={() => navigate('/home')}>Home</div>
 						<div onClick={() => navigate('/profile')}>Profile</div>
+						{user.role === 'PARKING_OWNER' && (
+							<div onClick={() => navigate('/parking-spaces')}>
+								Parking Spaces
+							</div>
+						)}
 					</div>
 					<PrimaryButton
 						to="/signin"

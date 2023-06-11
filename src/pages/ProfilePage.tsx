@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Layout from '../hoc/Layout';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const ProfilePage = () => {
 	//const [userActivity, setUserActivity] = useState([]);
+	
+	const user = useSelector((state: RootState) => state.userSlice.user); // get user
 
 	const userActivity = [
 		{
@@ -78,7 +82,7 @@ const ProfilePage = () => {
 	return (
 		<Layout>
 			<div className="flex flex-col text-gray-900 tracking-wider leading-normal">
-				<div className="flex flex-col w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
+				<div className="flex flex-col w-full md:w-10/12  mx-auto px-2">
 					<div className="flex items-center">
 						<h1 className="flex text-center font-sans font-bold break-normal text-green-500 px-2 py-8 text-xl md:text-2xl">
 							Hello Ledja, check out your activity here!

@@ -5,16 +5,18 @@ import Input from '../core/Input';
 import PrimaryButton from '../core/PrimaryButton';
 import PasswordInput from '../core/PasswordInput';
 import API from '../utils/API';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/authSlice';
+import { fetchUser } from '../redux/userSlice';
+import { AppDispatch, RootState } from '../redux/store';
 
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-
-	const dispatch = useDispatch();
+	
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
 	const onSubmitForm: FormEventHandler = (e) => {
@@ -27,6 +29,7 @@ const LoginPage = () => {
 			.then((res) => {
 				console.log(res.data.accessToken);
 				dispatch(login(res.data.accessToken));
+				dispatch(fetchUser());
 				navigate('/home');
 			})
 			.catch((error) => {
@@ -69,13 +72,12 @@ const LoginPage = () => {
 						<div className="flex w-full mt-8">
 							<PrimaryButton className="flex w-full" to="" label="Submit" />
 						</div>
-						<div className="flex justify-between">
+						<div className="flex justify-left">
 							<p
 								className="cursor-pointer text-left my-3 text-indigo-600"
 								onClick={() => navigate('/register')}>
 								Register here!
 							</p>
-							<a className="text-right my-3">Forgot password?</a>
 						</div>
 					</div>
 				</form>

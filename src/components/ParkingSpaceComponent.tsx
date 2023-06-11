@@ -1,8 +1,5 @@
 /** @format */
 
-import { useState } from 'react';
-import ViewParkingSpaceDrawer from './ViewParkingSpaceDrawer';
-
 const ParkingSpaceComponent = ({ parkingSpace, onSelect }: any) => {
 	return (
 		<>
