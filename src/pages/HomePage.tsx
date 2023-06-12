@@ -21,7 +21,7 @@ const HomePage = () => {
 		<Layout>
 			<div
 				className="relative grid grid-cols-[9fr_4fr]"
-				style={{ height: 'calc(100vh - (60px + 61px))' }}>
+				style={{ height: 'calc(100vh - (72px + 61px))' }}>
 				<LeafletMap parkingSpaces={parkingSpaces} />
 				<ParkingSpaceContainer onGetParkingSpaces={(parkingSpaces: SetStateAction<never[]>) => setParkingSpaces(parkingSpaces)}/>
 			</div>

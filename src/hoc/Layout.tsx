@@ -10,7 +10,7 @@ type LayoutProps = {
 
 const Layout = (props: LayoutProps): JSX.Element => {
 	return (
-		<div className="grid grid-cols-1 max-h-screen h-screen relative " style={{gridTemplateRows: '60px calc(100vh - (60px + 61px)) 61px'}}>
+		<div className="grid grid-cols-1 max-h-screen h-screen relative " style={{gridTemplateRows: '72px calc(100vh - (72px + 61px)) 61px'}}>
 			<Header />
 			<div className='overflow-auto'>{props.children}</div>
 			<Footer />

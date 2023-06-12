@@ -1,6 +1,11 @@
 /** @format */
-import React from 'react';
+import React, { useState } from 'react';
 import { X } from 'tabler-icons-react';
+import PrimaryButton from '../core/PrimaryButton';
+import CreateNewActivity from './CreateNewActivity';
+import API from '../utils/API';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const DetailItem = (props: any) => {
 	return (
@@ -12,6 +17,20 @@ const DetailItem = (props: any) => {
 };
 
 const ViewParkingSpaceDrawer = (props: any) => {
+	const [showBookingDetails, setShowBookingDetails] = useState(false);
+
+	const user = useSelector((state: RootState) => state.userSlice.user); // get user
+
+	const createNewActivity = (payload: any) => {
+		console.log(payload);
+		API.post('/activity', {
+			...payload,
+			parkingSpaceId: props.selectedParkingSpace.id,
+			userId: user.id,
+		})
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<div>
@@ -49,7 +68,17 @@ const ViewParkingSpaceDrawer = (props: any) => {
 					value={props.selectedParkingSpace?.telephone}
 				/>
 				<hr />
+				<div
+					className="mx-auto text-sm rounded-full bg-blue-200 text-blue-600 px-2 py-1 cursor-pointer"
+					onClick={() => setShowBookingDetails((prev) => !prev)}>
+					{showBookingDetails ? 'Hide' : 'Show'} booking information
+				</div>
 			</div>
+			{showBookingDetails && (
+				<CreateNewActivity
+					onCreateActivity={(payload: any) => createNewActivity(payload)}
+				/>
+			)}
 		</div>
 	);
 };

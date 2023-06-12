@@ -146,7 +146,7 @@ const ParkingSpacesPage = () => {
 											| null
 											| undefined;
 									}) => (
-										<tr className="m-2 p-2">
+										<tr  className="m-2 p-2">
 											<td>{parkingSpace.name}</td>
 											<td>{parkingSpace.capacity}</td>
 											<td>{parkingSpace.telephone}</td>

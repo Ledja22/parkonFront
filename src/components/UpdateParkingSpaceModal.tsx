@@ -17,10 +17,12 @@ const UpdateParkingSpaceModal = ({
 	const [opensAt, setOpensAt] = useState(parkingSpace.opensAt);
 	const [closesAt, setClosesAt] = useState(parkingSpace.closesAt);
 	const [telephone, setTelephone] = useState(parkingSpace.telephone);
+    
+    console.log(parkingSpace)
 
 	const addParkingSpace = () => {
-		const payload = [name, capacity, address, opensAt, closesAt, telephone];
-		API.patch(`/parking-spaces/${parkingSpace.id}`)
+		const payload = {name, capacity, address, opensAt, closesAt, telephone};
+		API.patch(`/parking-spaces/${parkingSpace.id}`, payload)
 			.then((res) => {
 				console.log(res);
 				setOpenModal(false);
