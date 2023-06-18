@@ -5,17 +5,33 @@ import BlankModal from '../core/BlankModal';
 import Input from '../core/Input';
 import API from '../utils/API';
 import PrimaryButton from '../core/PrimaryButton';
+import CTimePicker from '../core/CTimePicker';
 
 const AddParkingSpaceModal = ({ setOpenModal, title, onSuccess }: any) => {
 	const [name, setName] = useState('');
-	const [capacity, setCapacity] = useState('');
+	const [carCapacity, setCarCapacity] = useState();
+	const [vanCapacity, setVanCapacity] = useState();
+	const [bikeCapacity, setBikeCapacity] = useState();
+	const [latitude, setLatitude] = useState();
+	const [longitude, setLongitude] = useState();
 	const [address, setAddress] = useState('');
 	const [opensAt, setOpensAt] = useState('');
 	const [closesAt, setClosesAt] = useState('');
 	const [telephone, setTelephone] = useState('');
 
 	const addParkingSpace = () => {
-		const payload = {name, capacity, address, opensAt, closesAt, telephone};
+		const payload = {
+			name,
+			carCapacity,
+			vanCapacity,
+			bikeCapacity,
+			latitude,
+			longitude,
+			address,
+			opensAt,
+			closesAt,
+			telephone,
+		};
 		API.post('/parking-spaces', payload)
 			.then((res) => {
 				console.log(res);
@@ -41,23 +57,47 @@ const AddParkingSpaceModal = ({ setOpenModal, title, onSuccess }: any) => {
 						handleInputChange={setName}
 					/>
 					<Input
-						placeholder="Enter capacity"
+						placeholder="Enter car capacity"
 						className="w-full mb-4 "
-						handleInputChange={setCapacity}
+						handleInputChange={setCarCapacity}
+					/>
+					<Input
+						placeholder="Enter van capacity"
+						className="w-full mb-4 "
+						handleInputChange={setVanCapacity}
+					/>
+					<Input
+						placeholder="Enter bike capacity"
+						className="w-full mb-4 "
+						handleInputChange={setBikeCapacity}
+					/>
+					<Input
+						placeholder="Enter latitude"
+						className="w-full mb-4 "
+						handleInputChange={setLatitude}
+					/>
+					<Input
+						placeholder="Enter longitude"
+						className="w-full mb-4 "
+						handleInputChange={setLongitude}
 					/>
 					<Input
 						placeholder="Enter address"
 						className="w-full mb-4 "
 						handleInputChange={setAddress}
 					/>
-					<Input
-						placeholder="Enter opens at"
+					<label>Enter opening time</label>
+					<CTimePicker
+						placeholder="Enter reservation start time"
 						className="w-full mb-4 "
+						value={opensAt}
 						handleInputChange={setOpensAt}
 					/>
-					<Input
-						placeholder="Enter closes at"
+					<label>Enter closing time</label>
+					<CTimePicker
+						placeholder="Enter reservation end time"
 						className="w-full mb-4 "
+						value={closesAt}
 						handleInputChange={setClosesAt}
 					/>
 					<Input

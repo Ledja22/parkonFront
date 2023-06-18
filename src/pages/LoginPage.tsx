@@ -54,10 +54,10 @@ const LoginPage = () => {
 					<div className="w-full">
 						<h3 className="text-center mb-2 font-lg font-bold">Sign In</h3>
 						<div className="w-full mt-3">
-							<div>Email address</div>
+							<div>Username</div>
 							<Input
 								className="w-full mb-4 "
-								placeholder="Enter email"
+								placeholder="Enter username"
 								handleInputChange={setEmail}
 							/>
 						</div>
@@ -74,7 +74,7 @@ const LoginPage = () => {
 						</div>
 						<div className="flex justify-left">
 							<p
-								className="cursor-pointer text-left my-3 text-indigo-600"
+								className="cursor-pointer text-sm text-left my-3 text-indigo-600"
 								onClick={() => navigate('/register')}>
 								Register here!
 							</p>

@@ -1,23 +1,45 @@
 /** @format */
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Layout from '../hoc/Layout';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import API from '../utils/API';
+import DefaultIconButton from '../core/DefaultIconButton';
+import { Pencil, Trash } from 'tabler-icons-react';
+import CancelModal from '../core/CancelModal';
+import UpdateActivityModal from '../components/UpdateActivityModal';
 
 const ProfilePage = () => {
 	const [userActivity, setUserActivity] = useState([]);
+	const [selectedActivity, setSelectedActivity] = useState({});
+	const [openDeleteModal, setOpenDeleteModal] = useState(false);
+	const [openEditModal, setOpenEditModal] = useState(false);
 
 	const user = useSelector((state: RootState) => state.userSlice.user); // get user
 
-	useEffect(() => {
+	const getActivity = useCallback(() => {
 		API.get('/activity')
 			.then((res) => {
 				setUserActivity(res.data);
 			})
 			.catch((err) => console.log(err.message));
 	}, []);
+
+	useEffect(() => {
+		getActivity();
+	}, [getActivity]);
+
+	const deleteActivity = () => {
+		if (selectedActivity) {
+			API.delete(`/activity/${selectedActivity?.id}`)
+				.then((res) => {
+					getActivity();
+					console.log(res);
+				})
+				.catch((err) => console.log(err));
+		}
+	};
 
 	return (
 		<Layout>
@@ -56,24 +78,25 @@ const ProfilePage = () => {
 										<td>{activity.parkingSlotType}</td>
 										<td>{activity.opensAt}</td>
 										<td>{activity.closesAt}</td>
-										{/* <td>
-												<DefaultIconButton
-													icon={<Pencil className="text-gray-700 w-4 h-4" />}
-													onClick={() => {
-														setSelectedParkingSpace(parkingSpace);
-														setOpenEditModal(true);
-													}}
-												/>
-											</td>
-											<td>
-												<DefaultIconButton
-													icon={<Trash className="text-gray-700 w-4 h-4" />}
-													onClick={() => {
-														setSelectedParkingSpace(parkingSpace);
-														setOpenDeleteModal(true);
-													}}
-												/>
-											</td> */}
+										<td>
+											<DefaultIconButton
+												icon={<Pencil className="text-gray-700 w-4 h-4" />}
+												onClick={() => {
+													setSelectedActivity(activity);
+													setOpenEditModal(true);
+												}}
+												disabled={activity.status === 'COMPLETED'}
+											/>
+										</td>
+										<td>
+											<DefaultIconButton
+												icon={<Trash className="text-gray-700 w-4 h-4" />}
+												onClick={() => {
+													setSelectedActivity(activity);
+													setOpenDeleteModal(true);
+												}}
+											/>
+										</td>
 									</tr>
 								))}
 							</tbody>
@@ -81,6 +104,21 @@ const ProfilePage = () => {
 					</div>
 				</div>
 			</div>
+			{openDeleteModal && (
+				<CancelModal
+					setOpenModal={setOpenDeleteModal}
+					title="Are you sure you want to delete this activity"
+					onCancel={deleteActivity}
+				/>
+			)}
+			{openEditModal && (
+				<UpdateActivityModal
+					setOpenModal={setOpenEditModal}
+					selectedActivity={selectedActivity}
+					title="Update your activity"
+					onSuccess={getActivity}
+				/>
+			)}
 		</Layout>
 	);
 };

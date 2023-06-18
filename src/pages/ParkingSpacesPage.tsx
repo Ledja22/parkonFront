@@ -81,7 +81,7 @@ const ParkingSpacesPage = () => {
 							<thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 								<tr className="p-3">
 									<th data-priority="1">Name</th>
-									<th data-priority="2">Capacity</th>
+									<th data-priority="2">Car Capacity</th>
 									<th data-priority="3">Telephone</th>
 									<th data-priority="4">Address</th>
 									<th data-priority="5">Opens at</th>
@@ -100,7 +100,7 @@ const ParkingSpacesPage = () => {
 											| ReactPortal
 											| null
 											| undefined;
-										capacity:
+										carCapacity:
 											| string
 											| number
 											| boolean
@@ -146,9 +146,9 @@ const ParkingSpacesPage = () => {
 											| null
 											| undefined;
 									}) => (
-										<tr  className="m-2 p-2">
+										<tr className="m-2 p-2">
 											<td>{parkingSpace.name}</td>
-											<td>{parkingSpace.capacity}</td>
+											<td>{parkingSpace.carCapacity}</td>
 											<td>{parkingSpace.telephone}</td>
 											<td>{parkingSpace.address}</td>
 											<td>{parkingSpace.opensAt}</td>
@@ -197,6 +197,7 @@ const ParkingSpacesPage = () => {
 				<UpdateParkingSpaceModal
 					setOpenModal={setOpenEditModal}
 					parkingSpace={selectedParkingSpace}
+					title="Update parking space"
 					onSuccess={getParkingSpaces}
 				/>
 			)}

@@ -63,10 +63,10 @@ const RegisterPage = () => {
 							Register as {appUser}
 						</h3>
 						<div className="w-full mt-3">
-							<div>Email address</div>
+							<div>Username</div>
 							<Input
 								className="w-full mb-4 "
-								placeholder="Enter email"
+								placeholder="Enter username"
 								handleInputChange={setEmail}
 							/>
 						</div>
@@ -91,7 +91,7 @@ const RegisterPage = () => {
 						</div>
 						<div className="flex justify-between">
 							<div
-								className="cursor-pointer text-left my-3 text-xs text-indigo-600"
+								className="cursor-pointer text-left my-3 text-sm text-indigo-600"
 								onClick={() =>
 									appUser === 'user'
 										? setAppUser('parking owner')
@@ -102,7 +102,7 @@ const RegisterPage = () => {
 									: 'Register as a user here!'}
 							</div>
 							<p
-								className="cursor-pointer text-left my-3 text-xs text-indigo-600"
+								className="cursor-pointer text-left my-3 text-sm text-indigo-600"
 								onClick={() => navigate('/signin')}>
 								Login here!
 							</p>

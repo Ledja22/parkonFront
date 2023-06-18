@@ -51,8 +51,16 @@ const ViewParkingSpaceDrawer = (props: any) => {
 				<DetailItem title="Name" value={props.selectedParkingSpace?.name} />
 				<hr />
 				<DetailItem
-					title="Capacity"
-					value={props.selectedParkingSpace?.capacity}
+					title="Car Capacity"
+					value={props.selectedParkingSpace?.carCapacity}
+				/>
+				<DetailItem
+					title="Van Capacity"
+					value={props.selectedParkingSpace?.vanCapacity}
+				/>
+				<DetailItem
+					title="Bike Capacity"
+					value={props.selectedParkingSpace?.bikeCapacity}
 				/>
 				<DetailItem
 					title="Closes at"
@@ -69,7 +77,7 @@ const ViewParkingSpaceDrawer = (props: any) => {
 				/>
 				<hr />
 				<div
-					className="mx-auto text-sm rounded-full bg-blue-200 text-blue-600 px-2 py-1 cursor-pointer"
+					className="mx-auto text-sm rounded-full bg-blue-200 text-blue-600 px-2 mb-2 py-1 cursor-pointer"
 					onClick={() => setShowBookingDetails((prev) => !prev)}>
 					{showBookingDetails ? 'Hide' : 'Show'} booking information
 				</div>

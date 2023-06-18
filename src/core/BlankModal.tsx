@@ -9,7 +9,7 @@ type BlankModalProps = {
 	children: ReactNode;
 	title: string;
 	icon?: string;
-	maxW?: string | 'lg';
+	maxW?: string | 'md';
 	onClose?: () => void;
 	otherButtons?: ReactNode[];
 	bgColor?: string | 'white';
@@ -43,7 +43,7 @@ const BlankModal: React.FC<BlankModalProps> = (props: BlankModalProps) => {
 					&#8203;
 				</span>
 				<div
-					className={`inline-block self-center align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-${props.maxW} sm:w-full`}>
+					className={`inline-block self-center align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full`}>
 					<div className={`bg-${props.bgColor} px-4 pt-5 pb-4 sm:p-6 sm:pb-4`}>
 						<div className="sm:flex sm:items-start">
 							{props.icon && (

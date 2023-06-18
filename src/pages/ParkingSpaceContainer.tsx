@@ -21,9 +21,6 @@ const ParkingSpaceContainer = ({onGetParkingSpaces}: any) => {
 	const [parkingSpaces, setParkingSpaces] = useState<Array<ParkingSpace>>([]);
 	const [selectedParkingSpace, setSelectedParkingSpace] = useState({});
 
-    const user = useSelector((state: RootState) => state.userSlice.user); // get user
-
-
 	const getParkingSpaces = useCallback(() => {
 		API.get('/parking-spaces')
 			.then((res) => {
