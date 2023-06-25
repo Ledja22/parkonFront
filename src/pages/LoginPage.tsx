@@ -11,16 +11,22 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/authSlice';
 import { fetchUser } from '../redux/userSlice';
 import { AppDispatch, RootState } from '../redux/store';
+import { showError } from '../utils/helpers';
 
 const LoginPage = () => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	
+	const [email, setEmail] = useState();
+	const [password, setPassword] = useState();
+
 	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
 	const onSubmitForm: FormEventHandler = (e) => {
 		e.preventDefault();
+		// if (!email && !password) {
+		// 	console.log('im here');
+		// 	showError('Please fill in the form');
+		// 	return;
+		// } else {
 		dispatch(showSpinner('Loading data...'));
 		API.post('/auth/signin', {
 			username: email,
